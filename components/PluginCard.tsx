@@ -7,7 +7,7 @@ interface Props {
     id: string;
     name: string;
     description: string;
-    type: "spigot" | "pmmp";
+    type: "spigot" | "pmmp" | string;
     version: string;
     image: string;
 }
