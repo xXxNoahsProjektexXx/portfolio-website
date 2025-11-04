@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export function SocialSection() {
     const socials = [
-        { name: "Discord", icon: FaDiscord, link: "https://discord.gg/yourdiscord" },
-        { name: "GitHub", icon: FaGithub, link: "https://github.com/noahdev" },
-        { name: "YouTube", icon: FaYoutube, link: "https://youtube.com/@yourchannel" },
-        { name: "TikTok", icon: FaTiktok, link: "https://tiktok.com/@yourprofile" },
+        { name: "Discord", icon: FaDiscord, link: "https://discord.gg/ByteShare" },
+        { name: "GitHub", icon: FaGithub, link: "https://github.com/AustrianNoah" },
+        { name: "YouTube", icon: FaYoutube, link: "https://youtube.com/@JavaSnippetsDE" },
+        { name: "TikTok", icon: FaTiktok, link: "https://tiktok.com/@eynoah" },
     ];
 
     return (
