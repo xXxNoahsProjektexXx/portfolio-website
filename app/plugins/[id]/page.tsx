@@ -18,7 +18,7 @@ const plugins = {
         type: "spigot",
         version: "1.4.1",
         description: "Ein modernes Jobs-System für Spigot mit GUI, Booster, XP & MySQL-Unterstützung.",
-        file: "/plugins/ItemsAdder_4.0.14.jar",
+        file: "ItemsAdder_4.0.14.jar",
     },
     boosterplugin: {
         name: "BoosterPlugin",
@@ -51,7 +51,7 @@ export default function PluginDetail() {
             <PluginStats pluginId={id as string} type={plugin.type} />
 
             <Link
-                href={plugin.file}
+                href={`/downloads/${plugin.file}`}
                 className="inline-block mt-6 px-6 py-3 rounded-lg bg-purple-600/80 hover:bg-purple-500 text-white font-semibold transition"
             >
                 ⬇️ Plugin herunterladen

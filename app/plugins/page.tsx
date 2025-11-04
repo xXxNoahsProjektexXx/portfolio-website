@@ -13,31 +13,13 @@ const plugins: {
     image: string;
 }[] = [
     {
-        id: "economyapi",
-        name: "EconomyAPI",
-        description:
-            "Ein einfaches Wirtschaftssystem für PMMP-Server mit Multi-Currency Support und API Hooks.",
-        type: "pmmp",
-        version: "5.3.2",
-        image: "https://via.placeholder.com/600x300?text=EconomyAPI",
-    },
-    {
         id: "73355",
-        name: "JobsSystem",
+        name: "ItemsAdder",
         description:
-            "Ein umfangreiches Job-System für Spigot-Netzwerke mit MySQL, Booster-Support und GUI-Menü.",
+            "✨ItemsAdder⭐Emotes, Mobs, Items, Armors, HUD, GUI, Emojis, Blocks, Wings, Hats, Liquids",
         type: "spigot",
-        version: "1.4.1",
+        version: "4.0.14",
         image: "https://via.placeholder.com/600x300?text=JobsSystem",
-    },
-    {
-        id: "boosterplugin",
-        name: "BoosterPlugin",
-        description:
-            "Dynamisches Booster-System mit GUI, Permissions und Economy-Integration für PMMP.",
-        type: "pmmp",
-        version: "3.0.0",
-        image: "https://via.placeholder.com/600x300?text=BoosterPlugin",
     },
 ];
 
@@ -79,9 +61,7 @@ export default function Plugins() {
                     Live-Statistiken
                 </h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <PluginStats pluginId="EconomyAPI" type="pmmp" />
                     <PluginStats pluginId="73355" type="spigot" />
-                    <PluginStats pluginId="boosterplugin" type="pmmp" />
                 </div>
             </motion.div>
         </motion.section>
