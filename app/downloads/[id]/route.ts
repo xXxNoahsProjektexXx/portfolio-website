@@ -1,46 +1,42 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import mime from "mime-types";
+import mime from "mime-types"; // installiere falls noch nicht vorhanden: npm i mime-types
 
-export const dynamic = "force-dynamic"; // (optional, falls du Caching vermeiden willst)
-
-export async function GET(req, context) {
+export async function GET(
+    req: Request,
+    { params }: { params: { id: string } }
+) {
     try {
-        // params-Promise manuell entpacken
-        const { id } = await context.params;
+        const fileName = params.id;
+        const pluginPath = path.join(process.cwd(), "public", "plugins", fileName);
 
-        if (!id) {
-            return NextResponse.json({ error: "Kein Plugin angegeben" }, { status: 400 });
-        }
-
-        const filePath = path.join(process.cwd(), "public", "plugins", id);
-
-        if (!fs.existsSync(filePath)) {
+        if (!fs.existsSync(pluginPath)) {
             return NextResponse.json({ error: "Plugin nicht gefunden" }, { status: 404 });
         }
 
-        const fileBuffer = fs.readFileSync(filePath);
-        const mimeType = mime.lookup(id) || "application/octet-stream";
+        const fileBuffer = fs.readFileSync(pluginPath);
+        const mimeType = mime.lookup(fileName) || "application/octet-stream";
 
-        // optional: Logging
-        const logDir = path.join(process.cwd(), "data");
-        fs.mkdirSync(logDir, { recursive: true });
-        const logFile = path.join(logDir, "downloads.json");
-        const logs = fs.existsSync(logFile)
-            ? JSON.parse(fs.readFileSync(logFile, "utf-8"))
+        // 🔢 Optional: Download-Logging (z. B. in data/downloads.json)
+        const logPath = path.join(process.cwd(), "data", "downloads.json");
+        const logs = fs.existsSync(logPath)
+            ? JSON.parse(fs.readFileSync(logPath, "utf-8"))
             : {};
-        logs[id] = (logs[id] || 0) + 1;
-        fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
 
+        logs[fileName] = (logs[fileName] || 0) + 1;
+        fs.mkdirSync(path.join(process.cwd(), "data"), { recursive: true });
+        fs.writeFileSync(logPath, JSON.stringify(logs, null, 2));
+
+        // 📦 Datei ausliefern
         return new NextResponse(fileBuffer, {
             headers: {
                 "Content-Type": mimeType,
-                "Content-Disposition": `attachment; filename="${id}"`,
+                "Content-Disposition": `attachment; filename="${fileName}"`,
             },
         });
     } catch (err) {
-        console.error("Download error:", err);
+        console.error(err);
         return NextResponse.json({ error: "Fehler beim Download" }, { status: 500 });
     }
 }
