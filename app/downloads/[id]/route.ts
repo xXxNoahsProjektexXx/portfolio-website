@@ -3,13 +3,11 @@ import fs from "fs";
 import path from "path";
 import mime from "mime-types"; // npm i mime-types
 
-export async function GET(
-    req: NextRequest,
-    context: { params: Promise<{ id: string }> }
-) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id?: string }> }) {
     try {
-        // ⬇️ params async entpacken
+        // ✅ Param-Promise korrekt entpacken
         const { id } = await context.params;
+
         if (!id) {
             return NextResponse.json({ error: "Kein Plugin angegeben" }, { status: 400 });
         }
@@ -24,7 +22,7 @@ export async function GET(
         const fileBuffer = fs.readFileSync(pluginPath);
         const mimeType = mime.lookup(fileName) || "application/octet-stream";
 
-        // Optional: Download Logging
+        // 📊 Optionales Logging
         const logDir = path.join(process.cwd(), "data");
         const logFile = path.join(logDir, "downloads.json");
         fs.mkdirSync(logDir, { recursive: true });
@@ -34,7 +32,7 @@ export async function GET(
         logs[fileName] = (logs[fileName] || 0) + 1;
         fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
 
-        // Datei senden
+        // 📦 Datei senden
         return new NextResponse(fileBuffer, {
             headers: {
                 "Content-Type": mimeType,
