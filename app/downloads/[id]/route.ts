@@ -1,42 +1,42 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import mime from "mime-types"; // npm i mime-types
+import mime from "mime-types";
 
-export async function GET(req: NextRequest, context: { params: Promise<{ id?: string }> }) {
+export const dynamic = "force-dynamic"; // (optional, falls du Caching vermeiden willst)
+
+export async function GET(req, context) {
     try {
-        // ✅ Param-Promise korrekt entpacken
+        // params-Promise manuell entpacken
         const { id } = await context.params;
 
         if (!id) {
             return NextResponse.json({ error: "Kein Plugin angegeben" }, { status: 400 });
         }
 
-        const fileName = id;
-        const pluginPath = path.join(process.cwd(), "public", "plugins", fileName);
+        const filePath = path.join(process.cwd(), "public", "plugins", id);
 
-        if (!fs.existsSync(pluginPath)) {
+        if (!fs.existsSync(filePath)) {
             return NextResponse.json({ error: "Plugin nicht gefunden" }, { status: 404 });
         }
 
-        const fileBuffer = fs.readFileSync(pluginPath);
-        const mimeType = mime.lookup(fileName) || "application/octet-stream";
+        const fileBuffer = fs.readFileSync(filePath);
+        const mimeType = mime.lookup(id) || "application/octet-stream";
 
-        // 📊 Optionales Logging
+        // optional: Logging
         const logDir = path.join(process.cwd(), "data");
-        const logFile = path.join(logDir, "downloads.json");
         fs.mkdirSync(logDir, { recursive: true });
+        const logFile = path.join(logDir, "downloads.json");
         const logs = fs.existsSync(logFile)
             ? JSON.parse(fs.readFileSync(logFile, "utf-8"))
             : {};
-        logs[fileName] = (logs[fileName] || 0) + 1;
+        logs[id] = (logs[id] || 0) + 1;
         fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
 
-        // 📦 Datei senden
         return new NextResponse(fileBuffer, {
             headers: {
                 "Content-Type": mimeType,
-                "Content-Disposition": `attachment; filename="${fileName}"`,
+                "Content-Disposition": `attachment; filename="${id}"`,
             },
         });
     } catch (err) {
