@@ -20,9 +20,9 @@ export default function Impressum() {
                 <div className="space-y-3">
                     <p>
                         <span className="font-semibold text-purple-300">Betreiber:</span><br />
-                        Noah Weixelbaum<br />
-                        Musterstraße 42<br />
-                        1010 Wien, Österreich
+                        Marcel Noah Weixelbaum<br />
+                        Leo-Mathauser-Gasse 72<br />
+                        1230 Wien, Österreich
                     </p>
 
                     <p>
@@ -42,7 +42,7 @@ export default function Impressum() {
 
                     <p className="text-sm text-gray-500 pt-4 border-t border-white/10">
                         Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:<br />
-                        Noah Weixelbaum, Wien
+                        Marcel Noah Weixelbaum, Wien
                     </p>
                 </div>
             </div>
