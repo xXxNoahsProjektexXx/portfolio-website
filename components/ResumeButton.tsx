@@ -12,6 +12,7 @@ export function ResumeButton() {
             className="mt-6 px-6 py-3 bg-purple-600/80 hover:bg-purple-500 text-white rounded-lg shadow-lg font-semibold transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            disabled={true}
         >
             📄 Lebenslauf herunterladen
         </motion.button>
