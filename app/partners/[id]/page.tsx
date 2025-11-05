@@ -19,6 +19,12 @@ const partners = {
         logo: "https://via.placeholder.com/800x300?text=FlameFM",
         link: "https://flamefm.de",
     },
+    datalix: {
+        "name": "Datalix",
+        "description": "Datalix bietet ein kostengünstiges Hosting für Minecraft-Server.",
+        "logo": "https://cdn.datalix.de/images/header.png",
+        "link": "https://datalix.de/a/weixelbaum",
+    }
 };
 
 export default function PartnerDetail() {

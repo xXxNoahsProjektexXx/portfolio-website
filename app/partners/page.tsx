@@ -11,6 +11,12 @@ const partners = [
         description: "Premium Gamehosting für Minecraft, BeamMP und mehr.",
     },
     {
+        id: "datalix",
+        name: "Datalix",
+        logo: "https://cdn.datalix.de/images/header.png",
+        description: "Das Hosting-Unternehmen für kostengünstige KVM-Server",
+    },
+    {
         id: "flamefm",
         name: "FlameFM",
         logo: "https://via.placeholder.com/400x200?text=FlameFM",
