@@ -8,24 +8,26 @@ import Link from "next/link";
 const plugins = {
     economyapi: {
         name: "EconomyAPI",
+        dl_name: "EconomyAPI.phar",
         type: "pmmp",
         version: "5.3.2",
-        description: "EconomyAPI ist ein einfaches Wirtschaftssystem für PocketMine-MP Server mit Multi-Currency Support, API Hooks und Datenbankintegration.",
-        file: "/plugins/EconomyAPI.phar",
+        description:
+            "EconomyAPI ist ein einfaches Wirtschaftssystem für PocketMine-MP Server.",
     },
-    73355: {
-        name: "JobsSystem",
+    "73355": {
+        name: "ItemsAdder",
+        dl_name: "ItemsAdder_4.0.14.jar",
         type: "spigot",
-        version: "1.4.1",
-        description: "Ein modernes Jobs-System für Spigot mit GUI, Booster, XP & MySQL-Unterstützung.",
-        file: "ItemsAdder_4.0.14.jar",
+        version: "4.0.14",
+        description:
+            "ItemsAdder ermöglicht es, eigene Items, Blöcke und Texturen in Minecraft Spigot zu integrieren.",
     },
     boosterplugin: {
         name: "BoosterPlugin",
+        dl_name: "BoosterPlugin.phar",
         type: "pmmp",
         version: "3.0.0",
-        description: "BoosterPlugin bietet ein dynamisches Boost-System für alle Spielmodi.",
-        file: "/plugins/BoosterPlugin.phar",
+        description: "BoosterPlugin bietet ein dynamisches Boost-System für PMMP.",
     },
 };
 
@@ -45,13 +47,15 @@ export default function PluginDetail() {
             transition={{ duration: 0.5 }}
         >
             <h1 className="text-4xl font-bold text-purple-400 mb-3">{plugin.name}</h1>
-            <p className="text-gray-400 mb-3">Typ: {plugin.type.toUpperCase()} | Version: {plugin.version}</p>
+            <p className="text-gray-400 mb-3">
+                Typ: {plugin.type.toUpperCase()} | Version: {plugin.version}
+            </p>
             <p className="text-gray-300 mb-8">{plugin.description}</p>
 
             <PluginStats pluginId={id as string} type={plugin.type} />
 
             <Link
-                href={`/downloads/${plugin.file}`}
+                href={`/downloads/${plugin.dl_name}`}
                 className="inline-block mt-6 px-6 py-3 rounded-lg bg-purple-600/80 hover:bg-purple-500 text-white font-semibold transition"
             >
                 ⬇️ Plugin herunterladen
