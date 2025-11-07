@@ -3,10 +3,22 @@ import { authConfig } from "@/lib/auth";
 import { getAllData } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-    const session = await getServerSession(authConfig);
+interface SessionUser {
+    name?: string;
+    email?: string;
+    image?: string;
+    role?: string;
+}
 
-    if (!session || session.user.role !== "admin") {
+interface CustomSession {
+    user?: SessionUser;
+}
+
+export async function GET() {
+    // Typ explizit setzen
+    const session = (await getServerSession(authConfig)) as CustomSession;
+
+    if (!session?.user || session.user.role !== "admin") {
         return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
     }
 
