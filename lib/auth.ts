@@ -1,6 +1,13 @@
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 
+interface DiscordProfile {
+    id: string;
+    username: string;
+    avatar?: string;
+    email?: string;
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
     providers: [
         Discord({
@@ -10,8 +17,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     ],
     callbacks: {
         async signIn({ profile }) {
-            // Nur deine Discord-ID
-            return profile?.id === "1408739495662190694";
+            const p = profile as DiscordProfile;
+            return p.id === "1408739495662190694";
         },
         async session({ session, token }) {
             session.user.role =
