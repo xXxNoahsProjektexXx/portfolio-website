@@ -9,6 +9,7 @@ export default function AdminPage() {
         orders: [],
     });
     const [error, setError] = useState("");
+    const [msg, setMsg] = useState("");
 
     useEffect(() => {
         fetch("/api/admin/forms")
@@ -16,10 +17,23 @@ export default function AdminPage() {
             .then((d) => (d.error ? setError(d.error) : setData(d)));
     }, []);
 
-    if (error)
-        return (
-            <p className="text-center text-red-400 mt-20 font-semibold">{error}</p>
+    async function handleDecision(id: number, decision: "accepted" | "rejected") {
+        const message = prompt(
+            `Nachricht an den Kunden (${decision === "accepted" ? "Bestätigung" : "Ablehnung"})`
         );
+        if (!message) return;
+        const res = await fetch("/api/admin/orders/decision", {
+            method: "POST",
+            body: JSON.stringify({ id, decision, message }),
+        });
+        if (res.ok) {
+            setMsg(`Auftrag ${decision === "accepted" ? "akzeptiert" : "abgelehnt"}!`);
+            setTimeout(() => window.location.reload(), 1000);
+        } else setMsg("Fehler beim Senden");
+    }
+
+    if (error)
+        return <p className="text-center text-red-400 mt-20 font-semibold">{error}</p>;
 
     return (
         <motion.section
@@ -33,34 +47,54 @@ export default function AdminPage() {
             </h1>
 
             <div className="grid md:grid-cols-2 gap-10">
-                <FormList title="Kontaktformulare" data={data.contacts} />
-                <FormList title="Auftragsanfragen" data={data.orders} />
-            </div>
-        </motion.section>
-    );
-}
-
-function FormList({ title, data }: { title: string; data: any[] }) {
-    return (
-        <div className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md">
-            <h2 className="text-xl font-semibold text-purple-300 mb-4">{title}</h2>
-            {data.length === 0 && <p className="text-gray-400">Keine Einträge.</p>}
-            {data.map((x) => (
-                <div key={x.id} className="border-b border-white/10 pb-2 mb-2">
-                    <p className="font-semibold">
-                        {x.name}{" "}
-                        <span className="text-gray-400 text-sm">
-              ({x.email || "keine E-Mail"})
-            </span>
-                    </p>
-                    <p className="text-sm text-gray-400">
-                        {x.project ? `Projekt: ${x.project}` : ""}
-                    </p>
-                    <p className="text-sm text-gray-400">
-                        {x.details || x.message || ""}
-                    </p>
+                {/* Kontakte */}
+                <div className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md">
+                    <h2 className="text-xl font-semibold text-purple-300 mb-4">Kontaktformulare</h2>
+                    {data.contacts.map((c) => (
+                        <div key={c.id} className="border-b border-white/10 pb-2 mb-2">
+                            <p className="font-semibold">
+                                {c.name} <span className="text-gray-400 text-sm">({c.email})</span>
+                            </p>
+                            <p className="text-sm text-gray-400">{c.message}</p>
+                        </div>
+                    ))}
                 </div>
-            ))}
-        </div>
+
+                {/* Aufträge */}
+                <div className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-md">
+                    <h2 className="text-xl font-semibold text-purple-300 mb-4">Auftragsanfragen</h2>
+                    {data.orders.map((o) => (
+                        <div key={o.id} className="border-b border-white/10 pb-2 mb-2">
+                            <p className="font-semibold">
+                                {o.name} <span className="text-gray-400 text-sm">({o.email})</span>
+                            </p>
+                            <p className="text-sm text-gray-400">Projekt: {o.project}</p>
+                            <p className="text-sm text-gray-400 mb-2">{o.details}</p>
+                            {o.status ? (
+                                <p className="text-sm text-gray-400 italic">
+                                    Status: {o.status === "accepted" ? "✅ Akzeptiert" : "❌ Abgelehnt"}
+                                </p>
+                            ) : (
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => handleDecision(o.id, "accepted")}
+                                        className="px-3 py-1 bg-green-600/70 hover:bg-green-600 rounded"
+                                    >
+                                        Akzeptieren
+                                    </button>
+                                    <button
+                                        onClick={() => handleDecision(o.id, "rejected")}
+                                        className="px-3 py-1 bg-red-600/70 hover:bg-red-600 rounded"
+                                    >
+                                        Ablehnen
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {msg && <p className="text-center mt-6 text-purple-300">{msg}</p>}
+        </motion.section>
     );
 }
