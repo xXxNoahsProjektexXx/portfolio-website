@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaDiscord, FaGithub, FaYoutube, FaTiktok } from "react-icons/fa";
+import { FaDiscord, FaGithub, FaYoutube, FaTiktok, FaTwitch, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
 
 export function SocialSection() {
@@ -9,13 +9,14 @@ export function SocialSection() {
         { name: "GitHub", icon: FaGithub, link: "https://github.com/AustrianNoah" },
         { name: "YouTube", icon: FaYoutube, link: "https://youtube.com/@JavaSnippetsDE" },
         { name: "TikTok", icon: FaTiktok, link: "https://tiktok.com/@eynoah" },
+        { name: "X", icon: FaTwitter, link: "https://x.com/NoahLikesPMMP"},
     ];
 
     return (
         <motion.section
             className="max-w-3xl mx-auto my-20 text-center"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 0.8, y: 0 }}
             transition={{ duration: 0.6 }}
         >
             <h2 className="text-3xl font-bold text-purple-400 mb-6">Connect with me</h2>

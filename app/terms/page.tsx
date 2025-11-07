@@ -30,7 +30,7 @@ const sections = [
     },
     {
         title: "6. Kontakt",
-        content: "Fragen? kontakt@noah.dev",
+        content: "Fragen? Discord oder E-Mail - kontakt@weixelbaum.edv",
     },
 ];
 
@@ -72,7 +72,7 @@ export default function Terms() {
             </div>
 
             <p className="text-center text-xs text-gray-500 mt-10">
-                Stand: {new Date().toLocaleDateString("de-DE")}
+                Stand: 07.11.2025
             </p>
         </motion.section>
     );

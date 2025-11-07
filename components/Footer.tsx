@@ -46,6 +46,9 @@ export function Footer() {
                     <Link
                         href="/partners"
                         className="hover:text-purple-400 transition-colors">Partner</Link>
+
+                    <Link href={"/impressum"}
+                          className="hover:text-purple-400 transition-colors">Impressum</Link>
                 </motion.div>
 
                 <motion.p

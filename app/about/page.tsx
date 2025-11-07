@@ -20,9 +20,11 @@ export default function About() {
                 Über mich
             </h1>
             <p className="text-gray-300 text-center max-w-3xl mx-auto mb-10">
-                Ich bin Noah – Full-Stack Entwickler, Designer & Content Creator.
+                Ich bin Noah – ein Full-Stack Developer.
                 Ich liebe es, komplexe Systeme zu bauen, visuell starke Interfaces zu
                 gestalten und digitale Projekte mit Performance & Stil umzusetzen.
+                <br />
+                Ich liebe es auch Menschen im Netz zu Helfen
             </p>
 
 
@@ -30,7 +32,7 @@ export default function About() {
             <ResumeButton />
             <TechStackWall />
             <StatDisplay />
-            <PluginStats pluginId={"GroupSystem"} type={"pmmp"} />
+            <PluginStats pluginId={"AlwaysDay"} type={"pmmp"} />
             <PluginStats pluginId={"126753"} type={"spigot"} />
             <SocialSection />
         </motion.section>

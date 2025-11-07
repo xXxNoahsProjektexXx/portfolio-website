@@ -6,13 +6,13 @@ import { PluginStats } from "@/components/PluginStats";
 import Link from "next/link";
 
 const plugins = {
-    economyapi: {
-        name: "EconomyAPI",
+    "124789": {
+        name: "JvAutoBroadcast",
         dl_name: "EconomyAPI.phar",
-        type: "pmmp",
-        version: "5.3.2",
+        type: "spigot",
+        version: "1.0.0",
         description:
-            "EconomyAPI ist ein einfaches Wirtschaftssystem für PocketMine-MP Server.",
+            "AutoBroadcast Messages for your Server",
     },
     "73355": {
         name: "ItemsAdder",

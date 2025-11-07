@@ -14,12 +14,12 @@ const plugins: {
     image: string;
 }[] = [
     {
-        id: "economyapi",
+        id: "124789",
         dl_name: "EconomyAPI.phar",
-        name: "EconomyAPI",
+        name: "JvAutoBroadcast",
         description:
             "Ein einfaches Wirtschaftssystem für PMMP-Server mit Multi-Currency Support und API Hooks.",
-        type: "pmmp",
+        type: "spigot",
         version: "5.3.2",
         image: "https://via.placeholder.com/600x300?text=EconomyAPI",
     },
@@ -75,7 +75,7 @@ export default function Plugins() {
             >
                 <h2 className="text-2xl text-purple-300 mb-6 text-center">Live-Statistiken</h2>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <PluginStats pluginId="EconomyAPI" type="pmmp" />
+                    <PluginStats pluginId="124789" type="spigot" />
                     <PluginStats pluginId="73355" type="spigot" />
                     <PluginStats pluginId="boosterplugin" type="pmmp" />
                 </div>

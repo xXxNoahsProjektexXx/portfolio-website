@@ -36,7 +36,7 @@ export function PluginStats({ pluginId, type }: Props) {
             {type === "spigot" && (
                 <ul className="text-sm space-y-1">
                     <li>⭐ Downloads: {d.downloads.toLocaleString()}</li>
-                    <li>👤 Author: {d.author}</li>
+                    <li>👤 Author: {d.author ? "JavaSnippets" : "Noah"}</li>
                     <li>📦 Updates: {new Date(d.updates * 1000).toLocaleDateString("de-DE")}</li>
                     <li>💬 Bewertung: {d.rating.toFixed(1)} / 5</li>
                 </ul>
