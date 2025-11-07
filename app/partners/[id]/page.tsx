@@ -12,13 +12,6 @@ const partners = {
         logo: "https://skrime.eu/data/marketing/logo/primary.png",
         link: "https://skrime.eu/a/ByteShare",
     },
-    flamefm: {
-        name: "FlameFM",
-        description:
-            "FlameFM ist ein Online-Radio-Netzwerk für Gamer, Streamer und Content Creators. Mit 24/7 Musik, Events und Shows.",
-        logo: "https://via.placeholder.com/800x300?text=FlameFM",
-        link: "https://flamefm.de",
-    },
     datalix: {
         "name": "Datalix",
         "description": "Datalix bietet ein kostengünstiges Hosting für Minecraft-Server.",

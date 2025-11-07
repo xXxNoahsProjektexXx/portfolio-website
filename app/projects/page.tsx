@@ -7,17 +7,10 @@ import { ProjectModal } from "@/components/ProjectModal";
 
 const projects = [
     {
-        title: "Enhanced-Loop.net",
-        description:
-            "Ein modernes Hosting-Dashboard mit Next.js, API-Anbindung und Tailwind-UI. Fokus auf Performance und Branding.",
-        image: "https://via.placeholder.com/800x400?text=Enhanced-Loop",
-        link: "https://enhanced-loop.dev",
-    },
-    {
-        title: "ByteShare.tf",
+        title: "VexaByte.shop",
         description:
             "Ein digitaler Marktplatz für Discord-Bots, Minecraft-Plugins und Design-Services mit Payment-Integration.",
-        image: "https://i.imgur.com/M92sXsu.png",
+        image: "https://media.discordapp.net/attachments/1429787203088809999/1436394583595417790/image.png?ex=690f7233&is=690e20b3&hm=8fcad9d9f022535a4142b12a7489d4e908def817b082414db5ebd5a6f1cd2c8d&=&format=webp&quality=lossless&width=1752&height=838",
         link: "https://store.byteshare.tf",
     },
 ];
