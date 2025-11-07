@@ -1,5 +1,5 @@
 import Discord from "next-auth/providers/discord";
-import type { NextAuthConfig } from "next-auth";
+import type { AuthConfig } from "next-auth";
 
 interface DiscordProfile {
     id: string;
@@ -8,7 +8,7 @@ interface DiscordProfile {
     email?: string;
 }
 
-export const authConfig: NextAuthConfig = {
+export const authConfig: AuthConfig = {
     providers: [
         Discord({
             clientId: process.env.DISCORD_CLIENT_ID!,
@@ -18,6 +18,7 @@ export const authConfig: NextAuthConfig = {
     callbacks: {
         async signIn({ profile }) {
             const p = profile as DiscordProfile;
+            // Nur dein Discord-Konto zulassen
             return p.id === "1408739495662190694";
         },
         async session({ session, token }) {
