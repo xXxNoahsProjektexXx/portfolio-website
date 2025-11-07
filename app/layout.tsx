@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TypischNoaah | Portfolio",
+  title: "Weixelbaum | Portfolio",
   description: "Portfolio über mich :)",
 };
 

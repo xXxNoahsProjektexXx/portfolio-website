@@ -66,7 +66,7 @@ export default function Home() {
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.4 }}
                 >
-                    Als {currentWord || "Developer"} erschaffe ich moderne digitale
+                    Als Fullstack-Developer erschaffe ich moderne digitale
                     Erlebnisse – von interaktiven Websites über kreative Inhalte bis hin
                     zu eigenen Online-Shops.
                 </motion.p>
