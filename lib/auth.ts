@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
+import type { NextAuthConfig } from "next-auth";
 
 interface DiscordProfile {
     id: string;
@@ -8,7 +8,7 @@ interface DiscordProfile {
     email?: string;
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+export const authConfig: NextAuthConfig = {
     providers: [
         Discord({
             clientId: process.env.DISCORD_CLIENT_ID!,
@@ -26,4 +26,4 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return session;
         },
     },
-});
+};
